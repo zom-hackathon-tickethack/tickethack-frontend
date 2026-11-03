@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tickethack</title>
+    <script src="config.js"></script>
+    <!--title>Tickethack</title-->
     <link rel = "stylesheet" href="style.css">
 </head>
 <body>
@@ -11,29 +12,25 @@
         <a href ="index.html">Tickethack</a>
         <a href ="cart.html">Cart</a>
         <a href = "bookings.html">Bookings</a>
-
     </header>
+ 
     <main id="home">
-<h1> Explore the world effortlessly by train !</h1>
-<p>Compare, book and enjoy cheap prices for train tickets: your journey starts on Tickethack</p>
+        <h1> Explore the world effortlessly by train !</h1>
+        <p>Compare, book and enjoy cheap prices for train tickets: your journey starts on Tickethack</p>
 
-<div class ="container">
-     <!-- Carte de gauche -->
-      <div class="card">
-        <input type ="text" id="departure" placeholder="Departure">
-        <input type ="text" id="arrival" placeholder="Arrival">
-        <input type="date" id="date">
-        <button id="search">Search</button>
-      </div>
+        <div class ="container">
+            <!-- Carte de gauche -->
+            <div class="card">
+                <input type ="text" id="departure" placeholder="Departure">
+                <input type ="text" id="arrival" placeholder="Arrival">
+                <input type="date" id="date">
+                <button id="search">Search</button>
+            </div>
 
-    <!-- Carte de droite -->
-     <div class="card" id="results">
-<img src = "images/train.png" alt="train">
-<hr>
-<p>It's time to book your future trip.</p>
+            <!-- Carte de droite -->
+            <div class="card" id="results"> </div>
         </div>
-    </div>
-</main>
+    </main>
     <script src ="index.js"></script>
 </body>
 </html>
