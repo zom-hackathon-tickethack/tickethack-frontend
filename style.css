@@ -1,3 +1,59 @@
 .hidden {
     display: none;
 }
+
+
+#cart-home, #booking-home {
+    border: 1px solid red;
+    background-color:ghostwhite;
+    padding-top : 15vh;
+    padding-bottom : 15vh;
+    padding-right: 15vw;
+    padding-left: 15vw;
+}
+
+#cart-container, #booking-container {
+    border: 1px solid red;
+    background-color: white;
+    width: 70vw;
+    color:black;
+}
+
+#cart-footer {
+    border: 1px solid red;
+    background-color: blue;
+    width: 70vw;
+    color:darkblue;
+}
+
+#booking-footer {
+    border: 1px solid red;
+    background-color: white;
+    width: 70vw;
+    text-align: center;
+    color:green;
+}
+
+#cart-container > p, #booking-container > p {
+    text-align: center;
+    font-size: 22px;
+    font-weight: normal;
+}
+
+#cart-container > h1, #booking-container > h1 {
+    text-align: center;
+}
+
+.cart-row, .booking-row {
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+    background-color:ghostwhite;
+}

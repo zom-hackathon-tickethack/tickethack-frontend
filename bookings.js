@@ -1,8 +1,8 @@
 function dispNoBookingFound() {
-  document.querySelector('#results').innerHTML = `
-      <img src = "./images/notfound.png" alt="no trip found">
-      <hr>
-      <p>No trip found.</p>
+  document.querySelector('#booking-footer').innerHTML = '';
+  document.querySelector('#booking-container').innerHTML = `
+      <p>No booking yet.</p>
+      <p>why not plan a trip?</p>
   `;
 }
 
@@ -10,20 +10,29 @@ function dispNoBookingFound() {
 
 
 function addBookingRecord( booking ) {
-  document.querySelector('#results').innerHTML +=
-    `<div class="row">
-      <div class="text-container">
-        <span>${booking.trip.departure}</span>
-        <span>\></span>
-        <span>${booking.trip.arrival}</span>
-        <span>${booking.trip.date}</span>
-        <span>${booking.trip.price}</span>
+  document.querySelector('#booking-container').innerHTML +=
+    `<div class="booking-row">
+        <span class="booking-travel">${booking.trip.departure} \> ${booking.trip.arrival}</span>
+        <span class="booking-travel">${booking.trip.date}</span>
+        <span class="booking-travel">${booking.trip.price} €</span>
         <span class="hidden bookingId" data-id="${booking._id}"></span>
         <button class="del-button">X</button>
-      </div>
     </div>`;
+}
+
+
+
+
+function addBookingFooter() {
+  let total = 0;
+  document.querySelector('#booking-footer').innerHTML +=
+    `<hr>
+        <p>Enjoy your travels with Tickethack!</p>
+    `;
   addListenerDeleteBox();
 }
+
+
 
 
 
@@ -51,14 +60,15 @@ async function getBooking() {
   const resp = await fetch( `${CONFIG.API_URL_BACK}/booking` );
   const data = await resp.json();
   //console.log( data );
-  document.querySelector('#results').innerHTML = '';
   if ( data.result && ( data.fullBooking.length > 0 ) ) {
+    document.querySelector('#booking-container').innerHTML = '<h1>My bookings</h1>';
     for ( let cart of data.fullBooking ) {
       //console.log( item.textContent );
       //const stylDisp = ( ! pattern.test( item.textContent ) ) ? "none" : "flex";
       //item.parentNode.parentNode.style.display = stylDisp;
       addBookingRecord( cart );
     }
+    addBookingFooter();
   } else {
       dispNoBookingFound();
   }

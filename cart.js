@@ -1,8 +1,8 @@
 function dispNoCartFound() {
-  document.querySelector('#results').innerHTML = `
-      <img src = "./images/notfound.png" alt="no trip found">
-      <hr>
-      <p>No trip found.</p>
+  document.querySelector('#cart-footer').innerHTML = '';
+  document.querySelector('#cart-container').innerHTML = `
+      <p>No tickets in your cart.</p>
+      <p>why not plan a trip?</p>
   `;
 }
 
@@ -10,27 +10,23 @@ function dispNoCartFound() {
 
 
 function addCartRecord( cart ) {
-  document.querySelector('#results').innerHTML +=
-    `<div class="row">
-      <div class="trip-container">
-        <span>${cart.trip.departure}</span>
-        <span>\></span>
-        <span>${cart.trip.arrival}</span>
-        <span>${cart.trip.date}</span>
-        <span>${cart.trip.price}</span>
+  document.querySelector('#cart-container').innerHTML +=
+    `<div class="cart-row">
+        <span class="cart-travel">${cart.trip.departure} \> ${cart.trip.arrival}</span>
+        <span class="cart-date">${cart.trip.date}</span>
+        <span class="cart-price">${cart.trip.price} €</span>
         <span class="hidden cartId" data-id="${cart._id}"></span>
         <button class="del-button">X</button>
         <button class="purchase-button">Purchase</button>
-      </div>
     </div>`;
 }
 
-function addPurchaseAllButton() {
-  document.querySelector('#results').innerHTML +=
+function addCartFooter() {
+  let total = 0;
+  document.querySelector('#cart-footer').innerHTML +=
     `<div class="row">
-      <div class="text-container">
+        <span>Total : ${total}€</span>
         <button class="purchAll-button">Purchase All</button>
-      </div>
     </div>`;
   addListenerPurchaseBox();
   addListenerDeleteBox();
@@ -111,15 +107,15 @@ async function getCart() {
   const resp = await fetch( `${CONFIG.API_URL_BACK}/cart` );
   const data = await resp.json();
   console.log( data );
-  document.querySelector('#results').innerHTML = '';
   if ( data.result && ( data.fullCart.length > 0 ) ) {
+    document.querySelector('#cart-container').innerHTML = '<h1>My cart</h1>';
     for ( let cart of data.fullCart ) {
       //console.log( item.textContent );
       //const stylDisp = ( ! pattern.test( item.textContent ) ) ? "none" : "flex";
       //item.parentNode.parentNode.style.display = stylDisp;
       addCartRecord( cart );
     }
-    addPurchaseAllButton();
+    addCartFooter();
   } else {
       dispNoCartFound();
   }
