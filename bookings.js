@@ -9,19 +9,19 @@ function dispNoBookingFound() {
 
 
 
-function addBookingRecord( cart ) {
+function addBookingRecord( booking ) {
   document.querySelector('#results').innerHTML +=
     `<div class="row">
       <div class="text-container">
-        <span>${cart.trip.departure}</span>
-        <span>${cart.trip.arrival}</span>
-        <span>${cart.trip.date}</span>
-        <span>${cart.trip.price}</span>
-        <span class="hidden bookingId">${cart._id}</span>
+        <span>${booking.trip.departure}</span>
+        <span>\></span>
+        <span>${booking.trip.arrival}</span>
+        <span>${booking.trip.date}</span>
+        <span>${booking.trip.price}</span>
+        <span class="hidden bookingId" data-id="${booking._id}"></span>
         <button class="del-button">X</button>
       </div>
     </div>`;
-  //addListenerBookBox();
   addListenerDeleteBox();
 }
 
@@ -32,8 +32,8 @@ function addListenerDeleteBox() {
   for ( let item of delBoxes ) {
     item.addEventListener( 'click', async function() {
 
-      const bookingId = this.parentNode.querySelector('.bookingId').innerHTML;
-      console.log( bookingId );
+      const bookingId = this.parentNode.querySelector('.bookingId').dataset.id;
+      //console.log( bookingId );
       const resp = await fetch( `${CONFIG.API_URL_BACK}/booking`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
@@ -50,7 +50,7 @@ function addListenerDeleteBox() {
 async function getBooking() {
   const resp = await fetch( `${CONFIG.API_URL_BACK}/booking` );
   const data = await resp.json();
-  console.log( data );
+  //console.log( data );
   document.querySelector('#results').innerHTML = '';
   if ( data.result && ( data.fullBooking.length > 0 ) ) {
     for ( let cart of data.fullBooking ) {

@@ -42,14 +42,14 @@ async function addListenerBookBox() {
     // item.addEventListener( 'click', () => item.parentNode.remove() )
     item.addEventListener( 'click', async function() {
       const tripId = this.parentNode.querySelector('.tripId').innerHTML;
-      console.log( tripId );
+      //console.log( tripId );
       const resp = await fetch( `${CONFIG.API_URL_BACK}/cart`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify( { tripId } )
       } );
       const data = await resp.json();
-      console.log( data );
+      //console.log( data );
       if (data.result ) {
         window.location.href = 'cart.html';
       }
@@ -79,11 +79,11 @@ document.querySelector('#search').addEventListener( 'click',
         arrival: arrival,
         date: date
     });
-    console.log( params );
+    //console.log( params );
 
     const resp = await fetch( `${CONFIG.API_URL_BACK}/travel?${params}` );
     const data = await resp.json();
-    console.log( data );
+    //console.log( data );
     document.querySelector('#results').innerHTML = '';
     if ( data.result && ( data.travels.length > 0 ) ) {
       for ( let travel of data.travels ) {
