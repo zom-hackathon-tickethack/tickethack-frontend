@@ -71,6 +71,7 @@ header a:first-child {
     box-sizing: border-box;
     background-color: white;
     border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Carte de gauche*/
@@ -132,7 +133,10 @@ header a:first-child {
 /* le texte sous le trait */
 #results p {
     font-size: 18px;
-}
+    color: black;
+    margin: 0;
+  }
+
 
 /* Les trajets trouvés*/
 .row {
@@ -192,4 +196,9 @@ header a:first-child {
       background-color: #3a9e85;
       color: white;
       cursor: pointer;
+  }
+
+    /* focus sur le champ input texte */
+  .card input:focus {
+      outline: 2px solid #3a9e85;
   }
