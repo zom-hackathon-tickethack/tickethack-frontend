@@ -111,6 +111,7 @@ header a:first-child {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: auto;
 }
 
 /* l'image du train */
@@ -156,3 +157,29 @@ header a:first-child {
     color: white;
     cursor: pointer;
 }
+
+  /*Page Bookings*/
+  #bookings {
+      height: 100vh;
+      display: flex;
+      justify-content: center;   /* carte centrée horizontalement */
+      align-items: center;       /* carte centrée verticalement */
+      background-color: #f1f2f1;
+  }
+
+  .big-card {
+      width: 580px;
+      padding: 20px 50px;
+      background-color: white;
+      border-radius: 6px;
+      text-align: center;
+  }
+
+  .big-card hr {
+      width: 110px;
+  }
+
+  .green-text {
+      color: #3a9e85;
+      font-size: 12px;
+  }
