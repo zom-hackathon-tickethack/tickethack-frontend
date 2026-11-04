@@ -83,6 +83,11 @@ header a:first-child {
     font-size: 18px;
 }
 
+/* focus sur le champ input texte */
+.card input:focus {
+    outline: 2px solid #3a9e85;
+}
+
 #departure {
     border-bottom: 1px solid #555;
 }
@@ -193,20 +198,11 @@ header a:first-child {
       cursor: pointer;
   }
 
-    /* focus sur le champ input texte */
-  .card input:focus {
-      outline: 2px solid #3a9e85;
-  }
 
 
-  
-.hidden {
-    display: none;
-}
 
 
 #cart-home, #booking-home {
-    border: 1px solid red;
     height: calc(100vh - 80px);
     background-color: #f1f2f1;
     display: flex;
@@ -224,6 +220,8 @@ header a:first-child {
 
 #cart-cont-high, #booking-cont-high {
     border-radius: 10px 10px 0 0;
+    padding-left: 6vw;
+    padding-right: 6vw;
     /*border: 1px solid red;*/
 }
 
@@ -241,7 +239,13 @@ header a:first-child {
     border-radius: 0 0 10px 10px;
     padding-top: 15px;
     padding-bottom: 15px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    color: white;
     background-color: darkblue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #booking-cont-low {
@@ -259,12 +263,14 @@ header a:first-child {
     border-radius: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    padding-left: 10px;
-    padding-right: 10px;
+    /*margin-left: 2vw;*/
+    /*margin-right: 2vw;*/
+    padding-left: 1vw;
+    padding-right: 1vw;
     padding-top: 15px;
     padding-bottom: 15px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color:#f6eeee;
 }

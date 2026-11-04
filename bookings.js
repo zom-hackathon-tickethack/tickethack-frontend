@@ -14,7 +14,10 @@ function addBookingRecord( booking ) {
         <span class="booking-travel">${booking.trip.departure} \> ${booking.trip.arrival}</span>
         <span class="booking-travel">${booking.trip.date}</span>
         <span class="booking-travel">${booking.trip.price}€</span>
-        <button class="del-button">X</button>
+        <div>
+          <span>Departure in xx hours</span>
+          <button class="del-button">X</button>
+        </div>
     </div>`;
 }
 
@@ -37,7 +40,7 @@ function addListenerDeleteBox() {
   for ( let item of delBoxes ) {
     item.addEventListener( 'click', async function() {
 
-      const bookingId = this.parentNode.dataset.id;
+      const bookingId = this.parentNode.parentNode.dataset.id;
       //console.log( bookingId );
       const resp = await fetch( `${CONFIG.API_URL_BACK}/booking`, {
         method: 'DELETE',
@@ -46,7 +49,7 @@ function addListenerDeleteBox() {
       } );
       const data = await resp.json();
 
-      this.parentNode.remove();
+      this.parentNode.parentNode.remove();
     } )
   }
 }

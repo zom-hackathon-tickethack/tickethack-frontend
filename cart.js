@@ -25,11 +25,10 @@ function addCartRecord( cart ) {
 function addCartContLow() {
   let total = 0;
   document.querySelector('#cart-cont-low').style.display = 'flex';
-  document.querySelector('#cart-cont-low').innerHTML +=
-    `<div class="row-">
-        <span>Total : ${total}€</span>
-        <button class="purchAll-button">Purchase All</button>
-    </div>`;
+  document.querySelector('#cart-cont-low').innerHTML = `
+    <span>Total : ${total}€</span>
+    <button class="purchAll-button">Purchase All</button>
+  `;
   addListenerPurchaseBox();
   addListenerDeleteBox();
   addListenerPurchAllBox();
