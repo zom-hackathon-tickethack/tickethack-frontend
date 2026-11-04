@@ -1,6 +1,6 @@
 function dispNoCartFound() {
-  document.querySelector('#cart-footer').innerHTML = '';
-  document.querySelector('#cart-container').innerHTML = `
+  document.querySelector('#cart-cont-low').style.display = 'none';
+  document.querySelector('#cart-cont-high').innerHTML = `
       <p>No tickets in your cart.</p>
       <p>why not plan a trip?</p>
   `;
@@ -10,21 +10,23 @@ function dispNoCartFound() {
 
 
 function addCartRecord( cart ) {
-  document.querySelector('#cart-container').innerHTML +=
-    `<div class="cart-row">
+  document.querySelector('#cart-cont-high').innerHTML +=
+    `<div class="cart-row" data-id="${cart._id}">
         <span class="cart-travel">${cart.trip.departure} \> ${cart.trip.arrival}</span>
         <span class="cart-date">${cart.trip.date}</span>
-        <span class="cart-price">${cart.trip.price} €</span>
-        <span class="hidden cartId" data-id="${cart._id}"></span>
-        <button class="del-button">X</button>
-        <button class="purchase-button">Purchase</button>
+        <span class="cart-price">${cart.trip.price}€</span>
+        <div>
+          <button class="purchase-button">Purchase</button>
+          <button class="del-button">X</button>
+        </div>
     </div>`;
 }
 
-function addCartFooter() {
+function addCartContLow() {
   let total = 0;
-  document.querySelector('#cart-footer').innerHTML +=
-    `<div class="row">
+  document.querySelector('#cart-cont-low').style.display = 'flex';
+  document.querySelector('#cart-cont-low').innerHTML +=
+    `<div class="row-">
         <span>Total : ${total}€</span>
         <button class="purchAll-button">Purchase All</button>
     </div>`;
@@ -40,7 +42,7 @@ function addListenerDeleteBox() {
     item.addEventListener( 'click', async function() {
 
 
-      const cartId = this.parentNode.querySelector('.cartId').dataset.id;
+      const cartId = this.parentNode.parentNode.dataset.id;
       //console.log( cartId );
       const resp = await fetch( `${CONFIG.API_URL_BACK}/cart`, {
         method: 'DELETE',
@@ -50,7 +52,7 @@ function addListenerDeleteBox() {
       const data = await resp.json();
 
 
-      this.parentNode.remove();
+      this.parentNode.parentNode.remove();
     } )
   }
 }
@@ -63,7 +65,7 @@ async function addListenerPurchaseBox() {
   for ( let item of bookBoxes ) {
     item.addEventListener( 'click', async function() {
       const cartIdList = [];
-      cartIdList.push( this.parentNode.querySelector('.cartId').dataset.id );
+      cartIdList.push( this.parentNode.parentNode.dataset.id );
       //console.log( cartIdList );
       const resp = await fetch( `${CONFIG.API_URL_BACK}/booking`, {
         method: 'POST',
@@ -86,7 +88,7 @@ async function addListenerPurchaseBox() {
 async function addListenerPurchAllBox() {
   const bookAllBox = document.querySelector('.purchAll-button');
     bookAllBox.addEventListener( 'click', async function() {
-      const cartIdList = Array.from( document.querySelectorAll('.cartId') ).map( e => e.dataset.id);
+      const cartIdList = Array.from( document.querySelectorAll('.cart-row') ).map( e => e.dataset.id);
       //console.log( cartIdList );
       const resp = await fetch( `${CONFIG.API_URL_BACK}/booking`, {
         method: 'POST',
@@ -108,18 +110,14 @@ async function getCart() {
   const data = await resp.json();
   console.log( data );
   if ( data.result && ( data.fullCart.length > 0 ) ) {
-    document.querySelector('#cart-container').innerHTML = '<h1>My cart</h1>';
+    document.querySelector('#cart-cont-high').innerHTML = '<h2>My cart</h2>';
     for ( let cart of data.fullCart ) {
-      //console.log( item.textContent );
-      //const stylDisp = ( ! pattern.test( item.textContent ) ) ? "none" : "flex";
-      //item.parentNode.parentNode.style.display = stylDisp;
       addCartRecord( cart );
     }
-    addCartFooter();
+    addCartContLow();
   } else {
       dispNoCartFound();
   }
-  //const msgBoxes = document.querySelectorAll('.row > div > h6');
 }
 
 

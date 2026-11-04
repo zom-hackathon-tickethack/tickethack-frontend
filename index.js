@@ -18,16 +18,13 @@ function dispTheTrain() {
 function addTrip( travel ) {
   document.querySelector('#results').innerHTML +=
     `<div class="row">
-      <div class="text-container">
-        <span>${travel.departure}</span>
-        <span>${travel.arrival}</span>
+      <div class="text-container" data-id="${travel._id}">
+        <span>${travel.departure} \> ${travel.arrival}</span>
         <span>${travel.date}</span>
-        <span>${travel.price}</span>
-        <span class="hidden tripId">${travel._id}</span>
+        <span>${travel.price}€</span>
         <button class="book-button">Book</button>
       </div>
     </div>`;
-  addListenerBookBox();
 }
 
 
@@ -36,12 +33,8 @@ function addTrip( travel ) {
 async function addListenerBookBox() {
   const bookBoxes = document.querySelectorAll('.book-button');
   for ( let item of bookBoxes ) {
-    // 'this' ne fonctionne pas avec les fonctions fléchées (=>)
-    // item.addEventListener( 'click', () => this.parentNode.remove() } )
-    // soit utiliser funtion () {...} , soit utiliser 'item puisque je l'ai !
-    // item.addEventListener( 'click', () => item.parentNode.remove() )
     item.addEventListener( 'click', async function() {
-      const tripId = this.parentNode.querySelector('.tripId').innerHTML;
+      const tripId = this.parentNode.dataset.id;
       //console.log( tripId );
       const resp = await fetch( `${CONFIG.API_URL_BACK}/cart`, {
         method: 'POST',
@@ -71,8 +64,6 @@ document.querySelector('#search').addEventListener( 'click',
     depBox.value = "" ;
     arrBox.value = "" ;
     datBox.value = "" ;
-    //console.log( textToCompare );
-    //const pattern = new RegExp( textToCompare, "i" );
 
     const params = new URLSearchParams({
         departure: departure,
@@ -84,18 +75,15 @@ document.querySelector('#search').addEventListener( 'click',
     const resp = await fetch( `${CONFIG.API_URL_BACK}/travel?${params}` );
     const data = await resp.json();
     //console.log( data );
-    document.querySelector('#results').innerHTML = '';
     if ( data.result && ( data.travels.length > 0 ) ) {
+      document.querySelector('#results').innerHTML = '';
       for ( let travel of data.travels ) {
-        //console.log( item.textContent );
-        //const stylDisp = ( ! pattern.test( item.textContent ) ) ? "none" : "flex";
-        //item.parentNode.parentNode.style.display = stylDisp;
         addTrip( travel );
       }
+      addListenerBookBox();
     } else {
         dispNoTripFound();
     }
-    //const msgBoxes = document.querySelectorAll('.row > div > h6');
   }
 );
 
