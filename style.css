@@ -35,7 +35,7 @@ header a:first-child {
 
 /* Page d'accueil */
 #home {
-    height: 100vh;
+    height: calc(100vh - 80px);
     background-image: url('images/background.jpg');
     background-size: cover;
     background-position: center;
@@ -160,7 +160,7 @@ header a:first-child {
 
   /*Page Bookings*/
   #bookings {
-      height: 100vh;
+      height: calc(100vh - 80px);
       display: flex;
       justify-content: center;   /* carte centrée horizontalement */
       align-items: center;       /* carte centrée verticalement */
@@ -182,4 +182,14 @@ header a:first-child {
   .green-text {
       color: #3a9e85;
       font-size: 12px;
+  }
+
+   /* le bouton X des réservations */
+  .del-button {
+      border: none;
+      border-radius: 3px;  
+      padding: 6px 10px;
+      background-color: #3a9e85;
+      color: white;
+      cursor: pointer;
   }
