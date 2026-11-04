@@ -1,3 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap');
+
+/*Règles générales */
+body {
+    margin: 0;
+    font-family: "Work Sans", sans-serif;
+}
+
 .hidden {
     display: none;
+}
+
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: white;
+}
+
+header a {
+    color: black;
+    text-decoration: none;
+    margin-left: 40px;
+}
+
+/* logo Tickethack */
+header a:first-child {
+    margin-left: 0;
+    margin-right: auto;
+    color: #3a9e85;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* Page d'accueil */
+#home {
+    height: 100vh;
+    background-image: url('images/background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+#home h1 {
+    margin: 0;
+    padding-top: 50px;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+}
+
+#home p {
+    margin: 20px 0 50px;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+/* Les deux cartes */
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+}
+
+.card {
+    width: 430px;
+    height: 480px;
+    padding: 30px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 10px;
+}
+
+/* Carte de gauche*/
+.card:first-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.card input {
+    padding: 15px;
+    border: none;
+    background-color: #ececec;
+    font-family: inherit;
+    font-size: 18px;
+}
+
+#departure {
+    border-bottom: 1px solid #555;
+}
+
+#date {
+    margin-top: 50px;
+}
+
+#search {
+    margin-top: auto;
+    padding: 15px;
+    border: none;
+    border-radius: 3px;
+    background-color: #3a9e85;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Carte de droite*/
+#results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* l'image du train */
+#results img {
+    width: 100px;
+    margin-top: 80px;
+}
+
+/* le trait vert */
+#results hr {
+    width: 75%;
+    border: none;
+    border-top: 2px solid #3a9e85;
+    margin-top: 60px;
+    margin-bottom: 50px;
+}
+
+/* le texte sous le trait */
+#results p {
+    font-size: 18px;
+}
+
+/* Les trajets trouvés*/
+.row {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.text-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f6eeee;
+}
+
+/* le bouton Book */
+.book-button {
+    border: none;
+    border-radius: 3px;
+    padding: 6px 12px;
+    background-color: #3a9e85;
+    color: white;
+    cursor: pointer;
 }
