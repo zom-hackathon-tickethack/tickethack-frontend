@@ -2,7 +2,8 @@
 /**                                                                         **/
 /*****************************************************************************/
 function dispNoCartFound() {
-  document.querySelector('#cart-cont-low').style.display = 'none';
+  const cartContLow = document.querySelector('#cart-cont-low');
+  if ( cartContLow ) { document.querySelector('#cart-cont-low').remove();}
   document.querySelector('#cart-cont-high').innerHTML = `
       <p>No tickets in your cart.</p>
       <p>Why not plan a trip?</p>
@@ -20,7 +21,7 @@ function addCartRecord( cart ) {
     `<div class="cart-row" data-id="${cart._id}">
         <span class="cart-travel">${cart.trip.departure} \> ${cart.trip.arrival}</span>
         <span class="cart-date">${HrMn}</span>
-        <span class="cart-price">${cart.trip.price}€</span>
+        <span class="cart-price" data-price="${cart.trip.price}">${cart.trip.price}€</span>
         <div>
           <button class="purchase-button">Purchase</button>
           <button class="del-button">X</button>
@@ -33,10 +34,17 @@ function addCartRecord( cart ) {
 /**                                                                         **/
 /*****************************************************************************/
 function addCartContLow() {
-  let total = 0;
+  const tPrice = Array.from( document.querySelectorAll('.cart-price') )
+                 .map( e => Number( e.dataset.price ) )
+                 .reduce( (acc, x) => { return x + acc }, 0 );
+  //console.log( 'tPrice', tPrice );
+
+  const cartContLow = document.querySelector('#cart-cont-low');
+  if ( cartContLow ) { document.querySelector('#cart-cont-low').remove();}
+document.querySelector('#cart-container').innerHTML += '<div id="cart-cont-low"></div>';
   document.querySelector('#cart-cont-low').style.display = 'flex';
   document.querySelector('#cart-cont-low').innerHTML = `
-    <span>Total : ${total}€</span>
+    <span>Total : ${tPrice}€</span>
     <button class="purchAll-button">Purchase All</button>
   `;
   addListenerPurchaseBox();
@@ -52,8 +60,6 @@ function addListenerDeleteBox() {
   const delBoxes = document.querySelectorAll('.del-button');
   for ( let item of delBoxes ) {
     item.addEventListener( 'click', async function() {
-
-
       const cartId = this.parentNode.parentNode.dataset.id;
       //console.log( cartId );
       const resp = await fetch( `${CONFIG.API_URL_BACK}/cart`, {
@@ -62,9 +68,14 @@ function addListenerDeleteBox() {
         body: JSON.stringify( { cartId } )
       } );
       const data = await resp.json();
-
-
       this.parentNode.parentNode.remove();
+      const StillDelBoxes = document.querySelectorAll('.del-button');
+      //console.log( StillDelBoxes );
+      if ( StillDelBoxes.length == 0 ) {
+         dispNoCartFound();
+      } else {
+        addCartContLow();
+      }
     } )
   }
 }
@@ -125,7 +136,7 @@ async function addListenerPurchAllBox() {
 async function getCart() {
   const resp = await fetch( `${CONFIG.API_URL_BACK}/cart` );
   const data = await resp.json();
-  console.log( data );
+  //console.log( data );
   if ( data.result && ( data.fullCart.length > 0 ) ) {
     document.querySelector('#cart-cont-high').innerHTML = '<h2>My cart</h2>';
     for ( let cart of data.fullCart ) {
