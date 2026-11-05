@@ -195,7 +195,7 @@ header a:first-child {
   }
 
    /* le bouton X des réservations */
-  .del-button, .purchase-button, .purchAll-button  {
+  .del-button, .purchase-button, .purchAll-button, #close-popup  {
       border: none;
       border-radius: 3px;  
       padding: 6px 10px;
@@ -205,7 +205,28 @@ header a:first-child {
   }
 
 
+.popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
+.popup {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.popup-overlay.active {
+  display: flex;
+}
 
 
 #cart-home, #booking-home {

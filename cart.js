@@ -100,8 +100,9 @@ async function addListenerPurchaseBox() {
       //console.log( data );
       if (data.result ) {
         window.location.href = 'bookings.html';
+      } else {
+        popupShowWarning( "The trip is already booked !" );
       }
-
     } );
   }
 }
@@ -124,8 +125,9 @@ async function addListenerPurchAllBox() {
       //console.log( data );
       if (data.result ) {
         window.location.href = 'bookings.html';
+      } else {
+        popupShowWarning( "At least one the trips is already booked !" );
       }
-
     } );
 }
 
@@ -150,6 +152,28 @@ async function getCart() {
 
 
 /*****************************************************************************/
+/**   popup management                                                      **/
+/*****************************************************************************/
+function popupShowWarning( text ) {
+  popupMsg.textContent = text;
+  popupBox.classList.add("active");
+}
+
+
+/*****************************************************************************/
+/**   popup management                                                      **/
+/*****************************************************************************/
+function popupCloseWarning() {
+  popupBox.classList.remove("active");
+}
+
+
+/*****************************************************************************/
 /**    Code at page load                                                    **/
 /*****************************************************************************/
+// Gestion des popups
+const popupBox = document.getElementById( "warning-popup" );
+const popupMsg = document.getElementById( "warning-message" );
+document.getElementById("close-popup").addEventListener( "click", popupCloseWarning );
+
 getCart();

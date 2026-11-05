@@ -58,10 +58,28 @@ async function addListenerBookBox() {
       //console.log( data );
       if (data.result ) {
         window.location.href = 'cart.html';
+      } else {
+        popupShowWarning( "The trip is already into the cart !" );
       }
-
     } );
   }
+}
+
+
+/*****************************************************************************/
+/**   popup management                                                      **/
+/*****************************************************************************/
+function popupShowWarning( text ) {
+  popupMsg.textContent = text;
+  popupBox.classList.add("active");
+}
+
+
+/*****************************************************************************/
+/**   popup management                                                      **/
+/*****************************************************************************/
+function popupCloseWarning() {
+  popupBox.classList.remove("active");
 }
 
 
@@ -102,5 +120,9 @@ document.querySelector('#search').addEventListener( 'click',
   }
 );
 
+// Gestion des popups
+const popupBox = document.getElementById( "warning-popup" );
+const popupMsg = document.getElementById( "warning-message" );
+document.getElementById("close-popup").addEventListener( "click", popupCloseWarning );
 
 dispTheTrain();
