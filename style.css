@@ -79,18 +79,24 @@ header a:first-child {
     padding: 15px;
     border: none;
     background-color: #ececec;
+    border-radius: 5px;
     font-family: inherit;
     font-size: 18px;
 }
 
 /* focus sur le champ input texte */
 .card input:focus {
-    outline: 2px solid #3a9e85;
+    outline: 2px solid #3964b0;
 }
 
 #departure {
     border-bottom: 1px solid #555;
+    
 }
+
+#departure:focus {
+      border-bottom-color: #3964b0;
+  }
 
 #date {
     margin-top: 50px;
