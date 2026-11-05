@@ -19,7 +19,7 @@ function addBookingRecord( booking ) {
   const HrMn = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
   const deltaT = Math.floor( ( date - Date.now() ) / 3_600_000 ); // convert ms to hours rounded to floor
   //console.log( date - Date.now() ); // convert ms to hours rounded to floor
-  const dispString = ( deltaT <= 0 ) ? "Departure is over" : `Departure in ${deltaT} hours` ;
+  const dispString = ( deltaT < 0 ) ? "Departure is over" : `Departure in ${deltaT} hours` ;
   document.querySelector('#booking-cont-high').innerHTML +=
     `<div class="booking-row" data-id="${booking._id}">
         <span class="booking-travel">${booking.trip.departure} \> ${booking.trip.arrival}</span>
