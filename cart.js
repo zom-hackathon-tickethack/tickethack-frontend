@@ -1,14 +1,18 @@
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 function dispNoCartFound() {
   document.querySelector('#cart-cont-low').style.display = 'none';
   document.querySelector('#cart-cont-high').innerHTML = `
       <p>No tickets in your cart.</p>
-      <p>why not plan a trip?</p>
+      <p>Why not plan a trip?</p>
   `;
 }
 
 
-
-
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 function addCartRecord( cart ) {
   document.querySelector('#cart-cont-high').innerHTML +=
     `<div class="cart-row" data-id="${cart._id}">
@@ -22,6 +26,10 @@ function addCartRecord( cart ) {
     </div>`;
 }
 
+
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 function addCartContLow() {
   let total = 0;
   document.querySelector('#cart-cont-low').style.display = 'flex';
@@ -35,6 +43,9 @@ function addCartContLow() {
 }
 
 
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 function addListenerDeleteBox() {
   const delBoxes = document.querySelectorAll('.del-button');
   for ( let item of delBoxes ) {
@@ -57,8 +68,9 @@ function addListenerDeleteBox() {
 }
 
 
-
-
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 async function addListenerPurchaseBox() {
   const bookBoxes = document.querySelectorAll('.purchase-button');
   for ( let item of bookBoxes ) {
@@ -82,8 +94,9 @@ async function addListenerPurchaseBox() {
 }
 
 
-
-
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 async function addListenerPurchAllBox() {
   const bookAllBox = document.querySelector('.purchAll-button');
     bookAllBox.addEventListener( 'click', async function() {
@@ -104,6 +117,9 @@ async function addListenerPurchAllBox() {
 }
 
 
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 async function getCart() {
   const resp = await fetch( `${CONFIG.API_URL_BACK}/cart` );
   const data = await resp.json();
@@ -120,4 +136,7 @@ async function getCart() {
 }
 
 
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 getCart();

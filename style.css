@@ -215,6 +215,7 @@ header a:first-child {
     background-color: white;
     width: 70vw;
     color:black;
+    text-align: center;
     /*border: 1px solid red;*/
 }
 
@@ -226,13 +227,11 @@ header a:first-child {
 }
 
 #cart-cont-high > p, #booking-cont-high > p {
-    text-align: center;
     font-size: 22px;
     font-weight: normal;
 }
 
 #cart-cont-high > h2, #booking-cont-high > h2 {
-    text-align: center;
 }
 
 #cart-cont-low {
@@ -251,11 +250,10 @@ header a:first-child {
 #booking-cont-low {
     padding-top: 15px;
     padding-bottom: 15px;
-    text-align: center;
     color: #3a9e85;
 }
 
-#booking-enjoy > hr {
+#booking-enjoy-line {
     width: 200px;
 }
 

@@ -1,13 +1,18 @@
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 function dispNoBookingFound() {
   document.querySelector('#booking-cont-low').style.display = 'none';
   document.querySelector('#booking-cont-high').innerHTML = `
       <p>No booking yet.</p>
-      <p>why not plan a trip?</p>
+      <p>Why not plan a trip?</p>
   `;
 }
 
 
-
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 function addBookingRecord( booking ) {
   document.querySelector('#booking-cont-high').innerHTML +=
     `<div class="booking-row" data-id="${booking._id}">
@@ -22,19 +27,19 @@ function addBookingRecord( booking ) {
 }
 
 
-
-
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 function addBookingContLow() {
   document.querySelector('#booking-cont-low').style.display = 'block';
   document.querySelector('#booking-cont-low').innerHTML =
-    `<div id="booking-enjoy"> <hr> <p>Enjoy your travels with Tickethack!</p> </div>`;
+    `<hr id="booking-enjoy-line"> <p>Enjoy your travels with Tickethack!</p>`;
   addListenerDeleteBox();
 }
 
-
-
-
-
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 function addListenerDeleteBox() {
   const delBoxes = document.querySelectorAll('.del-button');
   for ( let item of delBoxes ) {
@@ -55,6 +60,9 @@ function addListenerDeleteBox() {
 }
 
 
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 async function getBooking() {
   const resp = await fetch( `${CONFIG.API_URL_BACK}/booking` );
   const data = await resp.json();
@@ -71,4 +79,7 @@ async function getBooking() {
 }
 
 
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 getBooking();

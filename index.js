@@ -1,3 +1,6 @@
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 function dispNoTripFound() {
   document.querySelector('#results').innerHTML = `
       <img src = "./images/notfound.png" alt="no trip found">
@@ -6,6 +9,10 @@ function dispNoTripFound() {
   `;
 }
 
+
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 function dispTheTrain() {
   document.querySelector('#results').innerHTML = `
       <img src = "images/train.png" alt="train">
@@ -15,6 +22,9 @@ function dispTheTrain() {
 }
 
 
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 function addTrip( travel ) {
   document.querySelector('#results').innerHTML +=
     `<div class="row">
@@ -28,8 +38,9 @@ function addTrip( travel ) {
 }
 
 
-
-
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 async function addListenerBookBox() {
   const bookBoxes = document.querySelectorAll('.book-button');
   for ( let item of bookBoxes ) {
@@ -52,7 +63,9 @@ async function addListenerBookBox() {
 }
 
 
-
+/*****************************************************************************/
+/**                                                                         **/
+/*****************************************************************************/
 document.querySelector('#search').addEventListener( 'click',
   async function() {
     const depBox = document.querySelector('#departure');
