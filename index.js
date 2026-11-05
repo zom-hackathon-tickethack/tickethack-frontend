@@ -26,11 +26,13 @@ function dispTheTrain() {
 /**                                                                         **/
 /*****************************************************************************/
 function addTrip( travel ) {
+  const date = new Date( travel.date );
+  const HrMn = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
   document.querySelector('#results').innerHTML +=
     `<div class="row">
       <div class="text-container" data-id="${travel._id}">
         <span>${travel.departure} \> ${travel.arrival}</span>
-        <span>${travel.date}</span>
+        <span>${HrMn}</span>
         <span>${travel.price}€</span>
         <button class="book-button">Book</button>
       </div>
@@ -64,7 +66,7 @@ async function addListenerBookBox() {
 
 
 /*****************************************************************************/
-/**                                                                         **/
+/**    Code at page load                                                    **/
 /*****************************************************************************/
 document.querySelector('#search').addEventListener( 'click',
   async function() {
@@ -74,9 +76,9 @@ document.querySelector('#search').addEventListener( 'click',
     let departure = depBox.value;
     let arrival   = arrBox.value;
     let date      = datBox.value;
-    depBox.value = "" ;
-    arrBox.value = "" ;
-    datBox.value = "" ;
+    // depBox.value = "" ;
+    // arrBox.value = "" ;
+    // datBox.value = "" ;
 
     const params = new URLSearchParams({
         departure: departure,

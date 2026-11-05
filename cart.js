@@ -14,10 +14,12 @@ function dispNoCartFound() {
 /**                                                                         **/
 /*****************************************************************************/
 function addCartRecord( cart ) {
+  const date = new Date( cart.trip.date );
+  const HrMn = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
   document.querySelector('#cart-cont-high').innerHTML +=
     `<div class="cart-row" data-id="${cart._id}">
         <span class="cart-travel">${cart.trip.departure} \> ${cart.trip.arrival}</span>
-        <span class="cart-date">${cart.trip.date}</span>
+        <span class="cart-date">${HrMn}</span>
         <span class="cart-price">${cart.trip.price}€</span>
         <div>
           <button class="purchase-button">Purchase</button>
@@ -137,6 +139,6 @@ async function getCart() {
 
 
 /*****************************************************************************/
-/**                                                                         **/
+/**    Code at page load                                                    **/
 /*****************************************************************************/
 getCart();

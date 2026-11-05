@@ -14,10 +14,12 @@ function dispNoBookingFound() {
 /**                                                                         **/
 /*****************************************************************************/
 function addBookingRecord( booking ) {
+  const date = new Date( booking.trip.date );
+  const HrMn = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
   document.querySelector('#booking-cont-high').innerHTML +=
     `<div class="booking-row" data-id="${booking._id}">
         <span class="booking-travel">${booking.trip.departure} \> ${booking.trip.arrival}</span>
-        <span class="booking-travel">${booking.trip.date}</span>
+        <span class="booking-travel">${HrMn}</span>
         <span class="booking-travel">${booking.trip.price}€</span>
         <div>
           <span>Departure in xx hours</span>
@@ -80,6 +82,6 @@ async function getBooking() {
 
 
 /*****************************************************************************/
-/**                                                                         **/
+/**    Code at page load                                                    **/
 /*****************************************************************************/
 getBooking();
