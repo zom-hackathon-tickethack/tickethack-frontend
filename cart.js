@@ -3,7 +3,7 @@
 /*****************************************************************************/
 function dispNoCartFound() {
   const cartContLow = document.querySelector('#cart-cont-low');
-  if ( cartContLow ) { document.querySelector('#cart-cont-low').remove();}
+  if ( cartContLow ) { cartContLow.remove(); }
   document.querySelector('#cart-cont-high').innerHTML = `
       <p>No tickets in your cart.</p>
       <p>Why not plan a trip?</p>
@@ -40,8 +40,8 @@ function addCartContLow() {
   //console.log( 'tPrice', tPrice );
 
   const cartContLow = document.querySelector('#cart-cont-low');
-  if ( cartContLow ) { document.querySelector('#cart-cont-low').remove();}
-document.querySelector('#cart-container').innerHTML += '<div id="cart-cont-low"></div>';
+  if ( cartContLow ) { document.querySelector('#cart-cont-low').remove(); }
+  document.querySelector('#cart-container').innerHTML += '<div id="cart-cont-low"></div>';
   document.querySelector('#cart-cont-low').style.display = 'flex';
   document.querySelector('#cart-cont-low').innerHTML = `
     <span>Total : ${tPrice}€</span>
